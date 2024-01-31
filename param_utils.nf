@@ -6,7 +6,7 @@ def default_mf_params() {
         mfrepo: multifish_container_repo,
         stitching_container: '',
         airlocalize_container: '',
-        segmentation_container: '',
+        segmentation_container: 'registry.int.janelia.org/liulab/cellpose-cuda:0.0.1',
         registration_container: '',
         spots_assignment_container: '',
 
@@ -23,7 +23,7 @@ def default_mf_params() {
 
         // download params
         downloader_container: multifish_container_repo+'/downloader:1.1.0',
-        data_manifest: '',
+        data_manifest: 'segmentation',
         verify_md5: 'true',
 
         // stitching params
@@ -36,7 +36,7 @@ def default_mf_params() {
         axis: '-x,y,z',
         channels: 'c0,c1,c2,c3',
         stitching_block_size: '128,128,64',
-        retile_z_size: 64,
+        retile_z_size: '64',
         stitching_mode: 'incremental',
         stitching_padding: '0,0,0',
         stitching_blur_sigma: '2',
@@ -57,7 +57,7 @@ def default_mf_params() {
 
         // spot extraction params
         spot_extraction_output: 'spots',
-        spot_extraction_scale: 's0',
+        spot_extraction_scale: 's1',
 
         // Airlocalize params
         airlocalize_xy_stride: 0, // use the default defined by airlocalize_xy_stride_param
@@ -99,49 +99,49 @@ def default_mf_params() {
         segmentation_output: 'segmentation',
         segmentation_model_dir: "${projectDir}/external-modules/segmentation/model/starfinity",
         segmentation_scale: 's2',
-        segmentation_cpus: 30,
-        segmentation_memory: '220 G',
+        segmentation_cpus: 48,
+        segmentation_memory: '440 G',
 
         // registration params
         registration_fixed_output: 'fixed',
         registration_output: 'registration',
         aff_scale: 's3', // the scale level for affine alignments
         def_scale: "s2", // the scale level for deformable alignments
-        registration_xy_stride: 0, // use the default defined by registration_xy_stride_param - must be a power of 2
+        registration_xy_stride: 1024, // use the default defined by registration_xy_stride_param - must be a power of 2
         registration_xy_overlap: 0, // use the default defined by registration_xy_overlap_param
-        registration_z_stride: 0, // use the default defined by registration_z_stride_param - must be a power of 2
+        registration_z_stride: 256, // use the default defined by registration_z_stride_param - must be a power of 2
         registration_z_overlap: 0, // use the default defined by registration_z_overlap_param
-        spots_cc_radius: 8,
-        spots_spot_number: 2000,
+        spots_cc_radius: '8',
+        spots_spot_number: '2000',
         // ransac params
-        ransac_cc_cutoff: 0.9,
-        ransac_dist_threshold: 2.5,
+        ransac_cc_cutoff: '0.9',
+        ransac_dist_threshold: '2.5',
         // deformation parameters
         deform_iterations: '500x200x25x1',
         deform_auto_mask: '0',
         // compute resources
-        ransac_cpus: 1,
-        ransac_memory: '1 G',
-        spots_cpus: 1,
-        spots_memory: '2 G',
-        interpolate_cpus: 1,
-        interpolate_memory: '1 G',
-        coarse_spots_cpus: 1,
-        coarse_spots_memory: '8 G',
-        aff_scale_transform_cpus: 1, // cores for affine scale transforms
-        aff_scale_transform_memory: '15 G',
-        def_scale_transform_cpus: 8, // cores for deformable scale transforms
-        def_scale_transform_memory: '80 G',
-        deform_cpus: 1,
-        deform_memory: '4 G',
-        registration_stitch_cpus: 2,
-        registration_stitch_memory: '20 G',
-        registration_transform_cpus: 12,
-        registration_transform_memory: '120 G',
+        ransac_cpus: 30,
+        ransac_memory: '240 G',
+        spots_cpus: 30,
+        spots_memory: '240 G',
+        interpolate_cpus: 30,
+        interpolate_memory: '240 G',
+        coarse_spots_cpus: 30,
+        coarse_spots_memory: '240 G',
+        aff_scale_transform_cpus: 48, // cores for affine scale transforms
+        aff_scale_transform_memory: '440 G',
+        def_scale_transform_cpus: 48, // cores for deformable scale transforms
+        def_scale_transform_memory: '440 G',
+        deform_cpus: 48,
+        deform_memory: '440 G',
+        registration_stitch_cpus: 48,
+        registration_stitch_memory: '440 G',
+        registration_transform_cpus: 48,
+        registration_transform_memory: '440 G',
 
         // warp spots parameters
-        warp_spots_cpus: 3,
-        warp_spots_memory: '60 G',
+        warp_spots_cpus: 48,
+        warp_spots_memory: '440 G',
 
         // intensity measurement parameters
         measure_intensities_output: 'intensities',

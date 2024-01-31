@@ -14,20 +14,9 @@ process predict {
 
     output:
     tuple val(image_path), val(output_path)
-
+    
     script:
-    def output_file = file(output_path)
-    args_list = [
-        '-i', image_path,
-        '-m', model_path,
-        '-c', ch,
-        '-s', scale,
-        '-o', output_path
-    ]
-    args = args_list.join(' ')
     """
-    mkdir -p ${output_file.parent}
-    echo "python /app/segmentation/scripts/starfinity_prediction.py ${args}"
-    python /app/segmentation/scripts/starfinity_prediction.py ${args}
+    /entrypoint.sh segmentation -i $image_path -o $output_path -n $ch/$scale
     """
 }
