@@ -27,7 +27,7 @@ RUN conda config --set always_yes yes --set changeps1 no && \
 
 RUN conda install -n base -c conda-forge python=3.10.12 tqdm numpy=1.24.3 scikit-image=0.22.0 \
         zarr=2.13.3 dask=2023.11.0 dask-image tifffile nd2 -y \
-    && conda run -n base pip install gputools xarray-multiscale fibsem-tools cellpose==2.2.3 \
+    && conda run -n base pip install gputools xarray-multiscale fibsem-tools cellpose==2.2.3 torch torchvision \
     && conda clean --tarballs -y \
     && mkdir -p /opt/conda/envs/myenv/etc/conda/activate.d \
     # It's necessary to set TMPDIR for running with Singularity, because /opt/conda will be read-only

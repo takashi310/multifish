@@ -48,6 +48,7 @@ def main():
     parser.add_argument("-i", "--input", dest="input", type=str, default=None, help="input n5 dataset")
     parser.add_argument("-n", "--n5path", dest="n5path", type=str, default=None, help="input n5 dataset path (e.g. c0/s1)")
     parser.add_argument("-o", "--output", dest="output", type=str, default=None, help="output file path (.tif)")
+    parser.add_argument("-m", "--model", dest="model", type=str, default=None, help="model file path")
     parser.add_argument("--min", dest="min", type=int, default=400, help="minimum size of segment")
     parser.add_argument("--diameter", dest="diameter", type=float, default=10., help="diameter of segment")
     parser.add_argument("--verbose", dest="verbose", default=False, action="store_true", help="enable verbose logging")
@@ -66,6 +67,7 @@ def main():
     output = args.output
     minsize = args.min
     diameter = args.diameter
+    model_path = args.model
 
     use_GPU = core.use_gpu()
     yn = ['NO', 'YES']
@@ -86,7 +88,11 @@ def main():
 
     dapi_norm = normalize99(dapi)
 
-    model = models.CellposeModel(gpu=True, model_type="nuclei")
+    if model_path is not None:
+        model = models.CellposeModel(gpu=True, pretrained_model=model_path)
+    else:
+        model = models.CellposeModel(gpu=True, model_type="nuclei")
+    
     masks_sp = np.zeros(dapi_norm.shape, dtype="uint32")
     for i in trange(len(dapi_norm)):
         # run with normalization off

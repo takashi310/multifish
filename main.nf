@@ -309,7 +309,9 @@ workflow {
         segmentation_output_dirs,
         final_params.dapi_channel,
         final_params.segmentation_scale,
-        final_params.segmentation_model_dir
+        final_params.segmentation_model_dir,
+        final_params.min_segsize,
+        final_params.diameter
     )  // [ input_image_path, output_labels_tiff ]
     segmentation_results.subscribe { log.debug "Segmentation results: $it" }
 

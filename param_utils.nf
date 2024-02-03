@@ -23,7 +23,7 @@ def default_mf_params() {
 
         // download params
         downloader_container: multifish_container_repo+'/downloader:1.1.0',
-        data_manifest: 'segmentation',
+        data_manifest: '',
         verify_md5: 'true',
 
         // stitching params
@@ -57,7 +57,7 @@ def default_mf_params() {
 
         // spot extraction params
         spot_extraction_output: 'spots',
-        spot_extraction_scale: 's1',
+        spot_extraction_scale: 's0',
 
         // Airlocalize params
         airlocalize_xy_stride: 0, // use the default defined by airlocalize_xy_stride_param
@@ -101,6 +101,9 @@ def default_mf_params() {
         segmentation_scale: 's2',
         segmentation_cpus: 48,
         segmentation_memory: '440 G',
+        min_segsize: 400,
+        diameter: 10,
+
 
         // registration params
         registration_fixed_output: 'fixed',
@@ -120,10 +123,10 @@ def default_mf_params() {
         deform_iterations: '500x200x25x1',
         deform_auto_mask: '0',
         // compute resources
-        ransac_cpus: 30,
-        ransac_memory: '240 G',
-        spots_cpus: 30,
-        spots_memory: '240 G',
+        ransac_cpus: 8,
+        ransac_memory: '100 G',
+        spots_cpus: 8,
+        spots_memory: '100 G',
         interpolate_cpus: 30,
         interpolate_memory: '240 G',
         coarse_spots_cpus: 30,
@@ -132,12 +135,12 @@ def default_mf_params() {
         aff_scale_transform_memory: '440 G',
         def_scale_transform_cpus: 48, // cores for deformable scale transforms
         def_scale_transform_memory: '440 G',
-        deform_cpus: 48,
-        deform_memory: '440 G',
-        registration_stitch_cpus: 48,
-        registration_stitch_memory: '440 G',
-        registration_transform_cpus: 48,
-        registration_transform_memory: '440 G',
+        deform_cpus: 8,
+        deform_memory: '100 G',
+        registration_stitch_cpus: 8,
+        registration_stitch_memory: '100 G',
+        registration_transform_cpus: 24,
+        registration_transform_memory: '220 G',
 
         // warp spots parameters
         warp_spots_cpus: 48,
