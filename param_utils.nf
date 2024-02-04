@@ -110,9 +110,9 @@ def default_mf_params() {
         registration_output: 'registration',
         aff_scale: 's3', // the scale level for affine alignments
         def_scale: "s2", // the scale level for deformable alignments
-        registration_xy_stride: 1024, // use the default defined by registration_xy_stride_param - must be a power of 2
+        registration_xy_stride: 0, // use the default defined by registration_xy_stride_param - must be a power of 2
         registration_xy_overlap: 0, // use the default defined by registration_xy_overlap_param
-        registration_z_stride: 256, // use the default defined by registration_z_stride_param - must be a power of 2
+        registration_z_stride: 0, // use the default defined by registration_z_stride_param - must be a power of 2
         registration_z_overlap: 0, // use the default defined by registration_z_overlap_param
         spots_cc_radius: '8',
         spots_spot_number: '2000',
@@ -123,24 +123,24 @@ def default_mf_params() {
         deform_iterations: '500x200x25x1',
         deform_auto_mask: '0',
         // compute resources
-        ransac_cpus: 8,
-        ransac_memory: '100 G',
-        spots_cpus: 8,
-        spots_memory: '100 G',
-        interpolate_cpus: 30,
-        interpolate_memory: '240 G',
+        ransac_cpus: 1,
+        ransac_memory: '12 G',
+        spots_cpus: 1,
+        spots_memory: '12 G',
+        interpolate_cpus: 1,
+        interpolate_memory: '12 G',
         coarse_spots_cpus: 30,
         coarse_spots_memory: '240 G',
         aff_scale_transform_cpus: 48, // cores for affine scale transforms
         aff_scale_transform_memory: '440 G',
         def_scale_transform_cpus: 48, // cores for deformable scale transforms
         def_scale_transform_memory: '440 G',
-        deform_cpus: 8,
-        deform_memory: '100 G',
-        registration_stitch_cpus: 8,
-        registration_stitch_memory: '100 G',
-        registration_transform_cpus: 24,
-        registration_transform_memory: '220 G',
+        deform_cpus: 1,
+        deform_memory: '12 G',
+        registration_stitch_cpus: 2,
+        registration_stitch_memory: '24 G',
+        registration_transform_cpus: 48,
+        registration_transform_memory: '440 G',
 
         // warp spots parameters
         warp_spots_cpus: 48,
